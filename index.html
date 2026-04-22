@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>m0neyaddict</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0c0c0c;
+    --surface: #141414;
+    --border: #222;
+    --text: #d8d8d8;
+    --muted: #555;
+    --soft: #888;
+    --accent: #c8a96e;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 32px;
+}
+
+header {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+}
+
+.header-left p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+    margin-top: 4px;
+}
+
+header nav a {
+    color: var(--muted);
+    font-size: 13px;
+    transition: color 0.15s;
+}
+
+header nav a:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.section {
+    margin-bottom: 72px;
+}
+
+.section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.post {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+}
+
+.post:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.post-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.post-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+.post-title:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.post-excerpt {
+    color: var(--soft);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.post-content {
+    display: none;
+}
+
+.post-content.active {
+    display: block;
+    margin-top: 32px;
+}
+
+.post-content p {
+    color: #999;
+    font-size: 15px;
+    line-height: 1.95;
+    margin-bottom: 22px;
+}
+
+.post-content code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+/* IMAGE STYLING */
+.post-content img {
+    width: 100%;
+    border-radius: 6px;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.img-caption {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: -12px;
+    margin-bottom: 24px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.project {
+    border-top: 1px solid var(--border);
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.project-name a {
+    color: var(--text);
+}
+
+.project-desc {
+    font-size: 13px;
+    color: var(--soft);
+}
+
+.project-lang {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+}
+</style>
+
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+    <div class="header-left">
+        <h1>m0neyaddict</h1>
+        <p>windows internals / low-level systems</p>
+    </div>
+    <nav>
+        <a href="https://github.com/m0neyaddict">github</a>
+    </nav>
+</header>
+
+<div class="section">
+<div class="section-label">writing</div>
+
+<div class="post">
+<div class="post-meta">apr 2025 — systems</div>
+
+<a class="post-title" onclick="toggle('post1')">
+writing a smbios parser from scratch
+</a>
+
+<div class="post-excerpt">
+what i learned building a header-only C++ library for parsing SMBIOS firmware tables on Windows.
+</div>
+
+<div class="post-content" id="post1">
+
+<p>
+i've been working on some low-level Windows stuff lately that required me to
+read and validate SMBIOS data. seemed simple enough at first, just grab the
+data and read the fields. turns out it's not that straightforward.
+</p>
+
+<p>
+the first problem is just getting the data. Windows exposes it through
+<code>GetSystemFirmwareTable</code> with the RSMB signature, which internally goes through
+<code>NtQuerySystemInformation</code>. what you get back is a raw blob with an 8-byte
+header followed by a sequence of SMBIOS structures packed back to back.
+</p>
+
+<img src="usage1.png">
+<div class="img-caption">raw parsed SMBIOS structures</div>
+
+<p>
+the second problem is the one that catches everyone off guard. fields aren't
+strings, they're indexes into a string table.
+</p>
+
+<p>
+once i got that working correctly the bigger surprise was how much data is
+actually sitting there.
+</p>
+
+<img src="usage2.png">
+<div class="img-caption">processor + memory breakdown</div>
+
+<p>
+ended up turning it into a proper header-only library. zero dependencies,
+drop it in and include.
+</p>
+
+<p>
+source: <a href="https://github.com/m0neyaddict/smbios-parser">
+github.com/m0neyaddict/smbios-parser
+</a>
+</p>
+
+</div>
+
+<button class="read-btn" id="btn-post1" onclick="toggle('post1')">
+→ read
+</button>
+
+</div>
+</div>
+
+<div class="section">
+<div class="section-label">projects</div>
+
+<div class="project">
+<div>
+<div class="project-name">
+<a href="https://github.com/m0neyaddict/smbios-parser">
+smbios-parser
+</a>
+</div>
+<div class="project-desc">
+header-only C++ library for parsing SMBIOS firmware tables
+</div>
+</div>
+<div class="project-lang">C++</div>
+</div>
+
+</div>
+
+<footer>
+<span>m0neyaddict</span>
+<span>2025</span>
+</footer>
+
+</div>
+
+<script>
+function toggle(id) {
+    var content = document.getElementById(id);
+    var btn = document.getElementById('btn-' + id);
+    var open = content.classList.toggle('active');
+    btn.textContent = open ? '↓ close' : '→ read';
+}
+</script>
+
+</body>
+</html>
